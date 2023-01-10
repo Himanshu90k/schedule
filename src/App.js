@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import {useState, useEffect} from 'react'
@@ -86,11 +86,17 @@ function App() {
 
         {showAddTask && <AddTask onAdd={addTask} />}
 
-        {tasks.length > 0 ? (<Tasks  tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />) 
-          : 'No Tasks to show'
-        }
+        
 
-        <About />
+        <Routes>
+
+          <Route path='/' element={tasks.length > 0 ? (<Tasks  tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />) 
+          : 'No Tasks to show'
+          }/>
+
+          <Route path='/about' element={<About />}/>
+          
+        </Routes>
 
         <Footer />
 
